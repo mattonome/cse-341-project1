@@ -1,0 +1,39 @@
+// LOCALHOST - CONTACTS API
+
+// Get all contacts
+### send request
+GET http://localhost:3000/contacts
+
+// Get a contact by ID
+### send request
+GET http://localhost:3000/contacts/6912e14166f528a642da93cd
+
+// Create a new contact
+### send request
+POST http://localhost:3000/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Matthew",
+  "lastName": "Onome",
+  "email": "matthew@example.com",
+  "favoriteColor": "Blue",
+  "birthday": "1995-05-15"
+}
+
+// Update a contact by ID
+### send request
+PUT http://localhost:3000/contacts/{{id}}
+Content-Type: application/json
+
+{
+  "firstName": "Matthew",
+  "lastName": "Onome",
+  "email": "matthew.updated@example.com",
+  "favoriteColor": "Green",
+  "birthday": "1995-05-15"
+}
+
+// Delete a contact by ID
+### send request
+DELETE http://localhost:3000/contacts/696bb101dce8284f26a9a363
