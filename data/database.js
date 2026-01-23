@@ -1,10 +1,8 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
-// recall mongo client
-const { MongoClient } = require('mongodb');
+const mongoose = require('mongoose');
 
-// declare a variable for the database
 let database;
 
 const initDb = (callback) => {
@@ -13,10 +11,11 @@ const initDb = (callback) => {
     return callback(null, database);
   }
 
-  MongoClient.connect(process.env.MONGODB_URL)
-    .then((client) => {
-      // FIX: explicitly select database
-      database = client.db(process.env.DB_NAME || 'contactsDB');
+  mongoose
+    .connect(process.env.MONGODB_URL)
+    .then((connection) => {
+      database = connection;
+      console.log('MongoDB connected using Mongoose');
       callback(null, database);
     })
     .catch((err) => {
@@ -24,7 +23,6 @@ const initDb = (callback) => {
     });
 };
 
-// Check if DB is initialized
 const getDatabase = () => {
   if (!database) {
     throw new Error('Database not initialized');
@@ -32,7 +30,6 @@ const getDatabase = () => {
   return database;
 };
 
-// export
 module.exports = {
   initDb,
   getDatabase
