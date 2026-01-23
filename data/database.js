@@ -16,6 +16,7 @@ const initDb = (callback) => {
     .then((connection) => {
       database = connection;
       console.log('MongoDB connected using Mongoose');
+      console.log('DB name:', connection.connection.name); // <-- temporary debug
       callback(null, database);
     })
     .catch((err) => {
