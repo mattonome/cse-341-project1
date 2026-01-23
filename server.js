@@ -43,7 +43,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // Routes
 app.use('/', require('./routes'));
 
-// Initialize DB, then start server
+// Now Initialize DB, then start server
 mongodb.initDb((err) => {
   if (err) {
     console.log(err);
